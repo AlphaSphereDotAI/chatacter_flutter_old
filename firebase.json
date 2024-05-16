@@ -1,0 +1,15 @@
+{
+    "flutter": {
+        "platforms": {
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "configurations": {
+                        "web": "1:535987886392:web:77f619e3a8df868b2389cd",
+                        "windows": "1:535987886392:web:b6dcb20b267280062389cd"
+                    },
+                    "projectId": "chatacter"
+                }
+            }
+        }
+    }
+}

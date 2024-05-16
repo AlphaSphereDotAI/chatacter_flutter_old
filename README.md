@@ -1,3 +1,3 @@
 # Chatacter
 
-this is a flutter project for Chatacter
+this is a flutter project for Chatacter.
