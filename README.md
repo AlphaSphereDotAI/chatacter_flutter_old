@@ -1,3 +1,3 @@
-# Chatacter
+# Flutter Part of Chatacter
 
-this is a flutter project for Chatacter.
+Back to [Chatacter](https://github.com/AlphaSphereDotAI/chatacter)
