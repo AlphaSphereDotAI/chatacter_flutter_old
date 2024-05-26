@@ -10,7 +10,7 @@ class Chat extends StatefulWidget {
   State<Chat> createState() => _ChatState();
 }
 
-Future<List> getResponse(String query) async {// https://8000-01hqrk1qr2p3w6cc5np0wk0ys5.cloudspaces.litng.ai
+Future<List> getResponse(String query) async {
   final response = await http.post(Uri.parse("http://127.0.0.1:8000/predict?query='$query'"));
   if (response.statusCode == 200) {
     List data = jsonDecode(response.body);
