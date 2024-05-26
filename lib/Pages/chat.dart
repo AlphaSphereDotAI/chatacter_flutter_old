@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -33,13 +34,17 @@ class _ChatState extends State<Chat> {
 
   submitValue(String value) {
     print('submit: $value');
-    getResponse(value).then((response) {
-      print(response);
-      setState(() {
-        _response = response;
-        _message = '';
-      });
-    });
+    getResponse(value).then(
+      (response) {
+        print(response);
+        setState(
+          () {
+            _response = response;
+            _message = '';
+          },
+        );
+      },
+    );
   }
 
   @override
