@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatacter/Pages/chat.dart';
 import 'package:flutter/material.dart';
 
@@ -8,74 +7,95 @@ class Home extends StatelessWidget {
   const Home({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 50,
-        leading: IconButton(
-          onPressed: () => print('Menu button pressed'),
-          icon: Icon(Icons.menu, color: Theme.of(context).colorScheme.primary),
-        ),
-        title: const Text('Chatacter Demo'),
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedTextKit(
-              isRepeatingAnimation: false,
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  'Welcome to Chatacter Demo',
-                  textAlign: TextAlign.center,
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 50,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            AnimatedTextKit(
-              isRepeatingAnimation: false,
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  'This is a chatbot app\nClick the button below to start chatting',
-                  textAlign: TextAlign.center,
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                print('Button pressed');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Chat()),
-                );
-              },
-              style: const ButtonStyle(
-                alignment: Alignment.center,
-                maximumSize: MaterialStatePropertyAll(
-                  Size(400, 50),
-                ),
-              ),
-              child: const Row(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          elevation: 50,
+          title: const Text('Chatacter Demo'),
+        ),
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            double screenWidth = constraints.maxWidth;
+            return Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.chat_bubble_outline_outlined,
+                  Text(
+                    'Welcome to Chatacter Demo',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: screenWidth * 0.1,
+                    ),
                   ),
-                  SizedBox(width: 20),
-                  Text('Chat with Napoleon Bonaparte'),
+                  const SizedBox(height: 10),
+                  Text(
+                    'This is a chatbot app\nClick the button below to start chatting',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: screenWidth * 0.03,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  FloatingActionButton.extended(
+                    onPressed: () {
+                      print('New Chat Button Pressed');
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            // height: MediaQuery.of(context).size.height * 0.2,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Card(
+                                    child: ListTile(
+                                      leading: const Icon(Icons.person),
+                                      title: const Text('Napoleon Bonaparte'),
+                                      subtitle: const Text('You are now can chat with Napoleon Bonaparte'),
+                                      onTap: () {
+                                        print('Chat 1 pressed');
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => const Chat(),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  const Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.announcement),
+                                      title: Text('Coming Soon...'),
+                                      subtitle: Text('More chat options will be available soon'),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    label: const Text('New Chat'),
+                    icon: const Icon(Icons.add),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                    elevation: 10,
+                    hoverColor: Colors.black87,
+                  ),
                 ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

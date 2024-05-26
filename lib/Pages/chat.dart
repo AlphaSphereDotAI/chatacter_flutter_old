@@ -86,43 +86,43 @@ class _ChatState extends State<Chat> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
-          child: Row(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: isVisible,
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'Chatacter Alpha Version\nYou are now chatting with Napoleon\nType your message below and\npress send to get a response\nIt may take time due to server starting\n',
-                          textStyle: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                      isRepeatingAnimation: false,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: Text(
-                      'Napoleon Bonaparte: $_response',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          // child: Row(
+          //   children: [
+          //     Column(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       children: [
+          //         Visibility(
+          //           visible: isVisible,
+          //           child: AnimatedTextKit(
+          //             animatedTexts: [
+          //               TypewriterAnimatedText(
+          //                 'Chatacter Alpha Version\nYou are now chatting with Napoleon\nType your message below and\npress send to get a response\nIt may take time due to server starting\n',
+          //                 textStyle: const TextStyle(
+          //                   fontWeight: FontWeight.bold,
+          //                   fontSize: 30,
+          //                 ),
+          //                 textAlign: TextAlign.center,
+          //               ),
+          //             ],
+          //             isRepeatingAnimation: false,
+          //           ),
+          //         ),
+          //         Container(
+          //           margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          //           width: MediaQuery.of(context).size.width * 0.8,
+          //           child: Text(
+          //             'Napoleon Bonaparte: $_response',
+          //             style: const TextStyle(
+          //               fontWeight: FontWeight.bold,
+          //               fontSize: 20,
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
         ),
       ),
       bottomNavigationBar: Padding(
