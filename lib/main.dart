@@ -1,6 +1,7 @@
 import 'package:chatacter/Pages/chat.dart';
 import 'package:chatacter/Pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,6 +12,19 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  print(Firebase.apps);
+  final FirebaseRemoteConfig remoteConfig;
+  remoteConfig = FirebaseRemoteConfig.instance;
+  print(remoteConfig.app);
+  print(remoteConfig);
+
+   remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(hours: 1),
+    ),
+  );
+  print(remoteConfig.getString('auth_lightning'));
   runApp(
     const ProviderScope(
       child: MyApp(),

@@ -34,7 +34,9 @@ class _ChatState extends State<Chat> {
   Future<void> submitValue(String value) async {
     print('submit: $value');
     _controller.clear();
-    final remoteConfig = FirebaseRemoteConfig.instance;
+    final FirebaseRemoteConfig remoteConfig;
+    remoteConfig = FirebaseRemoteConfig.instance;
+    print(remoteConfig.app);
     await remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
