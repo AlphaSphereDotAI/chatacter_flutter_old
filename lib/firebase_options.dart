@@ -73,5 +73,4 @@ class DefaultFirebaseOptions {
     projectId: 'chatacter',
     storageBucket: 'chatacter.appspot.com',
   );
-
 }

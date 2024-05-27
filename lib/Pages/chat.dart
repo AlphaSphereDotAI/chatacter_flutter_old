@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,7 +13,12 @@ class Chat extends StatefulWidget {
 }
 
 Future<List> getResponse(String query) async {
-  final response = await http.post(Uri.parse("http://127.0.0.1:8000/predict?query='$query'"));
+  final response = await http.post(
+    Uri.parse("https://8000-01hx9jfkpet0fwthkepmvrvv3c.cloudspaces.litng.ai/predict?query='$query'"),
+    headers: <String, String>{
+      'Authorization': 'Basic ',
+    },
+  );
   if (response.statusCode == 200) {
     List data = jsonDecode(response.body);
     return data;
@@ -23,48 +28,38 @@ Future<List> getResponse(String query) async {
 }
 
 class _ChatState extends State<Chat> {
-  late String _message;
-  late List _response = [];
-  bool isVisible = true;
-  updateMessage(String value) {
-    print('The value is: $value');
-    setState(() {
-      _message = value;
-    });
-  }
+  late final List _response = [];
+  final TextEditingController _controller = TextEditingController();
 
-  submitValue(String value) {
+  Future<void> submitValue(String value) async {
     print('submit: $value');
-    getResponse(value).then(
-      (response) {
-        print(response);
-        setState(
-          () {
-            _response = response;
-            _message = '';
-          },
-        );
-      },
+    _controller.clear();
+    final remoteConfig = FirebaseRemoteConfig.instance;
+    await remoteConfig.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(minutes: 1),
+        minimumFetchInterval: const Duration(hours: 1),
+      ),
     );
+    print(remoteConfig.getString('auth_lightning'));
+    // getResponse(value).then(
+    //   (response) {
+    //     print(response);
+    //     setState(
+    //       () {
+    //         _response.add(response[0]);
+    //       },
+    //     );
+    //   },
+    // );
   }
 
   @override
   void initState() {
     super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 10);
-    // Adjust the duration based on the speed of the typewriter animation
-    Timer.periodic(oneSec, (Timer timer) {
-      if (mounted) {
-        setState(() {
-          isVisible = false;
-        });
-        timer.cancel();
-      }
-    });
+    if (widget.character != null) {
+      _response.add('Hello, I am ${widget.character}. How can I help you?');
+    }
   }
 
   @override
@@ -82,75 +77,32 @@ class _ChatState extends State<Chat> {
         ),
         title: const Text('Chatting with Napoleon Bonaparte'),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Center(
-          // child: Row(
-          //   children: [
-          //     Column(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         Visibility(
-          //           visible: isVisible,
-          //           child: AnimatedTextKit(
-          //             animatedTexts: [
-          //               TypewriterAnimatedText(
-          //                 'Chatacter Alpha Version\nYou are now chatting with Napoleon\nType your message below and\npress send to get a response\nIt may take time due to server starting\n',
-          //                 textStyle: const TextStyle(
-          //                   fontWeight: FontWeight.bold,
-          //                   fontSize: 30,
-          //                 ),
-          //                 textAlign: TextAlign.center,
-          //               ),
-          //             ],
-          //             isRepeatingAnimation: false,
-          //           ),
-          //         ),
-          //         Container(
-          //           margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          //           width: MediaQuery.of(context).size.width * 0.8,
-          //           child: Text(
-          //             'Napoleon Bonaparte: $_response',
-          //             style: const TextStyle(
-          //               fontWeight: FontWeight.bold,
-          //               fontSize: 20,
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  decoration: const InputDecoration(
-                    hintText: 'Message...',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: updateMessage,
-                ),
-              ),
-              TextButton(
-                onPressed: () => submitValue(_message),
-                onHover: (value) {
-                  print('Hovering over the button');
-                },
-                child: const Icon(
-                  Icons.send,
-                ),
-              ),
-            ],
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: _response.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_response[index]),
+                  leading: const Icon(Icons.person),
+                );
+              },
+            ),
           ),
-        ),
+          TextField(
+            controller: _controller,
+            onSubmitted: submitValue,
+            decoration: InputDecoration(
+              hintText: 'Enter your message here',
+              suffixIcon: IconButton(
+                onPressed: () => submitValue(_controller.text),
+                icon: const Icon(Icons.send),
+              ),
+              contentPadding: const EdgeInsets.all(20),
+            ),
+          ),
+        ],
       ),
     );
   }
