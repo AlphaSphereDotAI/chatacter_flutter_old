@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Chat extends StatefulWidget {
-  const Chat({super.key});
+  final String? character;
+  const Chat({super.key, this.character});
   @override
   State<Chat> createState() => _ChatState();
 }
@@ -79,9 +80,7 @@ class _ChatState extends State<Chat> {
           },
           icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.primary),
         ),
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text('Chatting'),
+        title: const Text('Chatting with Napoleon Bonaparte'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
