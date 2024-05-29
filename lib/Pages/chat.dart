@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+// import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,16 +34,6 @@ class _ChatState extends State<Chat> {
   Future<void> submitValue(String value) async {
     print('submit: $value');
     _controller.clear();
-    final FirebaseRemoteConfig remoteConfig;
-    remoteConfig = FirebaseRemoteConfig.instance;
-    print(remoteConfig.app);
-    await remoteConfig.setConfigSettings(
-      RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(hours: 1),
-      ),
-    );
-    print(remoteConfig.getString('auth_lightning'));
     // getResponse(value).then(
     //   (response) {
     //     print(response);
