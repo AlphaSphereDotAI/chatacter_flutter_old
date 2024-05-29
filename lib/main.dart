@@ -9,25 +9,15 @@ Future<void> main() async {
   // Client client = Client();
   // client.setEndpoint('https://cloud.appwrite.io/v1').setProject('chatacter').setSelfSigned(status: true);
   runApp(
-    const GetMaterialApp(
-      home: MyApp(),
-    ),
-  );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
+    GetMaterialApp(
+      // home: const MyApp(),
       title: 'Chatacter Demo',
       theme: ThemeData.dark(),
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const Home()),
-        GetPage(name: '/chat', page: () => const Chat()),
+        GetPage(name: '/chat', page: () => const Chat(), transition: Transition.rightToLeft),
       ],
-    );
-  }
+    ),
+  );
 }

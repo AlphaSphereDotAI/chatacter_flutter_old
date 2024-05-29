@@ -2,15 +2,14 @@
 
 import 'package:chatacter/Pages/chat.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      // theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -62,14 +61,7 @@ class Home extends StatelessWidget {
                                       subtitle: const Text('You are now can chat with Napoleon Bonaparte'),
                                       onTap: () {
                                         print('Chat 1 pressed');
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => const Chat(
-                                              character: 'Napoleon Bonaparte',
-                                            ),
-                                          ),
-                                        );
+                                        Get.to(() => const Chat(character: 'Napoleon Bonaparte'));
                                       },
                                     ),
                                   ),

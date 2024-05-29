@@ -3,6 +3,7 @@ import 'dart:convert';
 
 // import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Chat extends StatefulWidget {
@@ -63,9 +64,9 @@ class _ChatState extends State<Chat> {
         leading: IconButton(
           onPressed: () {
             print('Back to home');
-            Navigator.pop(context);
+            Get.back();
           },
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.primary),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.primary,),
         ),
         title: const Text('Chatting with Napoleon Bonaparte'),
       ),
