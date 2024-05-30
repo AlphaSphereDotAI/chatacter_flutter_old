@@ -1,22 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class Chat extends StatefulWidget {
-  final String? character;
-
-  const Chat({super.key, this.character});
-
-  @override
-  State<Chat> createState() => _ChatState();
-}
-
 Future<List> getResponse(String query) async {
   final response = await http.post(
-    Uri.parse(
-        "https://8000-01hx9jfkpet0fwthkepmvrvv3c.cloudspaces.litng.ai/predict?query='$query'"),
+    Uri.parse("https://8000-01hx9jfkpet0fwthkepmvrvv3c.cloudspaces.litng.ai/predict?query='$query'"),
     headers: <String, String>{
       'Authorization': 'Basic ',
     },
@@ -27,6 +18,15 @@ Future<List> getResponse(String query) async {
   } else {
     throw Exception('Failed to load data');
   }
+}
+
+class Chat extends StatefulWidget {
+  final String? character;
+
+  const Chat({super.key, this.character});
+
+  @override
+  State<Chat> createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
