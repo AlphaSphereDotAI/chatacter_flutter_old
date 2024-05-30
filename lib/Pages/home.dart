@@ -6,15 +6,37 @@ import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          elevation: 50,
-          title: const Text('Chatacter Demo'),
+          elevation: 100,
+          title: const Text('Home'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.info),
+              onPressed: () {
+                print('Info Button Pressed');
+                // card widget
+                showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const Card(
+                      elevation: 0,
+                      child: ListTile(
+                        title: Text('About Chatacter'),
+                        subtitle: Text(
+                            'This is a chat bot app. You can chat with different characters. More characters will be added soon.\n\n\nChatacter is developed by\n\t- Mohamed Hisham Abdelzaher\n\t- Yousef Mohamed Abdel-Hay\n\t- Abdelrahman Mostafa Mohamed'),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -24,7 +46,7 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Welcome to Chatacter Demo',
+                    'Welcome to Chatacter',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
@@ -33,7 +55,7 @@ class Home extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'This is a chatbot app\nClick the button below to start chatting',
+                    'This is a chat bot app\nClick the button below to start chatting',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -81,10 +103,10 @@ class Home extends StatelessWidget {
                     },
                     label: const Text('New Chat'),
                     icon: const Icon(Icons.add),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                    // backgroundColor: Theme.of(context).colorScheme.secondary,
+                    // foregroundColor: Theme.of(context).colorScheme.onSecondary,
                     elevation: 10,
-                    hoverColor: Colors.black87,
+                    hoverColor: Colors.black45,
                   ),
                 ],
               ),
