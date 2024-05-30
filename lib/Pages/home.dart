@@ -21,18 +21,25 @@ class Home extends StatelessWidget {
               onPressed: () {
                 print('Info Button Pressed');
                 // card widget
-                showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const Card(
-                      elevation: 0,
-                      child: ListTile(
-                        title: Text('About Chatacter'),
-                        subtitle: Text(
-                            'This is a chat bot app. You can chat with different characters. More characters will be added soon.\n\n\nChatacter is developed by\n\t- Mohamed Hisham Abdelzaher\n\t- Yousef Mohamed Abdel-Hay\n\t- Abdelrahman Mostafa Mohamed'),
-                      ),
-                    );
+                Get.defaultDialog(
+                  title: 'About Chatacter',
+                  onConfirm: () {
+                    print('Ok');
+                    Get.back();
                   },
+                  textConfirm: 'Confirm',
+                  // radius: 50,
+                  content: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('This is a chat bot app. You can chat with different characters. More characters will be added soon.'),
+                      SizedBox(height: 10),
+                      Text('Chatacter is developed by:'),
+                      Text('\t- Mohamed Hisham Abdelzaher'),
+                      Text('\t- Yousef Mohamed Abdel-Hay'),
+                      Text('\t- Abdelrahman Mostafa Mohamed'),
+                    ],
+                  ),
                 );
               },
             ),
@@ -50,7 +57,7 @@ class Home extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
-                      fontSize: screenWidth * 0.1,
+                      fontSize: screenWidth * 0.08,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -66,45 +73,33 @@ class Home extends StatelessWidget {
                   FloatingActionButton.extended(
                     onPressed: () {
                       print('New Chat Button Pressed');
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return SizedBox(
-                            // height: MediaQuery.of(context).size.height * 0.2,
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Card(
-                                    child: ListTile(
-                                      leading: const Icon(Icons.person),
-                                      title: const Text('Napoleon Bonaparte'),
-                                      subtitle: const Text('You are now can chat with Napoleon Bonaparte'),
-                                      onTap: () {
-                                        print('Chat 1 pressed');
-                                        Get.to(() => const Chat(character: 'Napoleon Bonaparte'));
-                                      },
-                                    ),
-                                  ),
-                                  const Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.announcement),
-                                      title: Text('Coming Soon...'),
-                                      subtitle: Text('More chat options will be available soon'),
-                                    ),
-                                  )
-                                ],
+                      Get.bottomSheet(
+                        Wrap(
+                          children: [
+                            Card(
+                              child: ListTile(
+                                leading: const Icon(Icons.person),
+                                title: const Text('Napoleon Bonaparte'),
+                                subtitle: const Text('You are now can chat with Napoleon Bonaparte'),
+                                onTap: () {
+                                  print('Chat 1 pressed');
+                                  Get.to(() => const Chat(character: 'Napoleon Bonaparte'));
+                                },
                               ),
                             ),
-                          );
-                        },
+                            const Card(
+                              child: ListTile(
+                                leading: Icon(Icons.announcement),
+                                title: Text('Coming Soon...'),
+                                subtitle: Text('More chat options will be available soon'),
+                              ),
+                            )
+                          ],
+                        ),
                       );
                     },
                     label: const Text('New Chat'),
                     icon: const Icon(Icons.add),
-                    // backgroundColor: Theme.of(context).colorScheme.secondary,
-                    // foregroundColor: Theme.of(context).colorScheme.onSecondary,
                     elevation: 10,
                     hoverColor: Colors.black45,
                   ),
