@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                         leading: const Icon(Icons.settings),
                         title: const Text('Settings'),
                         onTap: () {
-                          print('About pressed');
+                          print('Settings pressed');
                           Get.to(() => const Settings());
                         },
                       ),
