@@ -12,6 +12,8 @@ Future<void> main() async {
   // Client client = Client();
   // client.setEndpoint('https://cloud.appwrite.io/v1').setProject('chatacter').setSelfSigned(status: true);
   Get.put(ChatacterController());
+  Get.changeTheme(ThemeData.light());
+  print('Get.isDarkMode: ${Get.isDarkMode}');
   runApp(
     GetMaterialApp(
       title: 'Chatacter Demo',
@@ -22,7 +24,7 @@ Future<void> main() async {
         GetPage(name: '/about', page: () => const About()),
         GetPage(name: '/settings', page: () => const Settings()),
       ],
-      theme: ThemeData.light(useMaterial3: true),
+      // theme: ThemeData.light(useMaterial3: true),
     ),
   );
 }

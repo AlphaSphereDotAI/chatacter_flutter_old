@@ -7,6 +7,7 @@ class ChatacterController extends GetxController {
   final isText = true.obs;
   final isVoice = false.obs;
   final isVideo = false.obs;
+  final isAppInDarkMode = false.obs;
   submitQuery(String query) {
     print('Query: $query');
   }

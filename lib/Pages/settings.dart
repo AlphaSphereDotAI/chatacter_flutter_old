@@ -22,8 +22,31 @@ class Settings extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: Column(
+          child: ListView(
             children: [
+              Card(
+                elevation: 0,
+                child: ListTile(
+                  leading: const Icon(Icons.brightness_6),
+                  title: const Text('Toggle Theme'),
+                  trailing: Obx(
+                    () => Switch(
+                      value: chatacterController.isAppInDarkMode.value,
+                      onChanged: (bool value) {
+                        chatacterController.isAppInDarkMode.value = value;
+                        if (chatacterController.isAppInDarkMode.value) {
+                          Get.changeTheme(ThemeData.dark());
+                          print('Changed to Dark Theme');
+                        } else {
+                          Get.changeTheme(ThemeData.light());
+                          print('Changed to Light Theme');
+                        }
+                        print('IsAppInDarkMode Switched to ${chatacterController.isAppInDarkMode.value}, Get.isDarkMode: ${Get.isDarkMode}');
+                      },
+                    ),
+                  ),
+                ),
+              ),
               Card(
                 elevation: 0,
                 child: ListTile(

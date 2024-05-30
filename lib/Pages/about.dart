@@ -23,12 +23,12 @@ class About extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('This is a chat bot app. You can chat with different characters. More characters will be added soon.'),
+              Text('This is a chat bot app. You can chat with different characters. More characters will be added soon.', style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              Text('Chatacter is developed by:'),
-              Text('\t-\tMohamed Hisham Abdelzaher'),
-              Text('\t-\tYousef Mohamed Abdel-Hay'),
-              Text('\t-\tAbdelrahman Mostafa Mohamed'),
+              Text('Chatacter is developed by:', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('\t-\tMohamed Hisham Abdelzaher', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('\t-\tYousef Mohamed Abdel-Hay', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('\t-\tAbdelrahman Mostafa Mohamed', style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
         ),
