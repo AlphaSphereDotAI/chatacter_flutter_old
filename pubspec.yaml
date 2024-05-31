@@ -41,7 +41,6 @@ dependencies:
   url_launcher: ^6.2.5
   google_fonts: ^6.2.0
   path_provider: ^2.0.8
-  flutter_launcher_icons: ^0.13.1
   get: ^4.6.6
 #  appwrite: ^12.0.3
 dev_dependencies:
@@ -56,7 +55,19 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.9
   custom_lint: ^0.6.4
+  flutter_launcher_icons: ^0.13.1
 
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/logo.png"
+  web:
+    generate: true
+    image_path: "assets/logo.png"
+  windows:
+    generate: true
+    image_path: "assets/logo.png"
+    icon_size: 48 # min:48, max:256, default: 48
+ 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
