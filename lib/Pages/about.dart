@@ -19,16 +19,18 @@ class About extends StatelessWidget {
             ),
           ),
         ),
-        body: const Center(
+        body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('This is a chat bot app. You can chat with different characters. More characters will be added soon.', style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
-              Text('Chatacter is developed by:', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('\t-\tMohamed Hisham Abdelzaher', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('\t-\tYousef Mohamed Abdel-Hay', style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('\t-\tAbdelrahman Mostafa Mohamed', style: TextStyle(fontWeight: FontWeight.bold)),
+              Image.asset('assets/logo.png'),
+              const SizedBox(height: 10),
+              const Text('This is a chat bot app. You can chat with different characters. More characters will be added soon.', style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+              const Text('Chatacter is developed by:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('\t-\tMohamed Hisham Abdelzaher', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('\t-\tYousef Mohamed Abdel-Hay', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('\t-\tAbdelrahman Mostafa Mohamed', style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
         ),
