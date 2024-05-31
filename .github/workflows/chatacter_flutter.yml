@@ -72,38 +72,38 @@ jobs:
   #         packageName: com.AlphaSphereDotAI.Chatacter
   #         releaseFiles: app/build/outputs/bundle/release/app-release.aab
   #         track: alpha
-  ReleaseToGithubRelease:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-chatacter-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: ${{ runner.os }}-chatacter-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-      - name: Install Dependencies
-        run: flutter pub get
-      - name: Build APK
-        run: flutter build apk
-      - name: Build App Bundle
-        run: flutter build appbundle
-      - name: Build Windows
-        run: flutter build windows
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@2.9.0
-        with:
-          file: ./build/windows/x64/runner/Release/chatacter.exe
-          asset_name: Chatacter.exe
-          overwrite: true
+  # ReleaseToGithubRelease:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #     actions: read
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4.1.4
+  #       with:
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #     - name: Cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.pub-cache
+  #         key: ${{ runner.os }}-chatacter-${{ hashFiles('**/pubspec.lock') }}
+  #         restore-keys: ${{ runner.os }}-chatacter-
+  #     - name: Setup Flutter
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: stable
+  #     - name: Install Dependencies
+  #       run: flutter pub get
+  #     - name: Build APK
+  #       run: flutter build apk
+  #     - name: Build App Bundle
+  #       run: flutter build appbundle
+  #     - name: Build Windows
+  #       run: flutter build windows
+  #     - name: Upload binaries to release
+  #       uses: svenstaro/upload-release-action@2.9.0
+  #       with:
+  #         file: ./build/windows/x64/runner/Release/chatacter.exe
+  #         asset_name: Chatacter.exe
+  #         overwrite: true
