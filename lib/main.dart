@@ -24,7 +24,6 @@ Future<void> main() async {
         GetPage(name: '/about', page: () => const About()),
         GetPage(name: '/settings', page: () => const Settings()),
       ],
-      // theme: ThemeData.light(useMaterial3: true),
     ),
   );
 }
