@@ -40,12 +40,12 @@ class Chat extends StatelessWidget {
             ),
             TextField(
               controller: textController,
-              onSubmitted: chatacterController.submitQuery,
+              onSubmitted: chatacterController.getTextResponse,
               decoration: InputDecoration(
                 hintText: 'Enter your message here',
                 suffixIcon: IconButton(
                   onPressed: () {
-                    chatacterController.submitQuery(textController.text);
+                    chatacterController.getTextResponse(textController.text);
                     textController.clear();
                   },
                   icon: const Icon(Icons.send),
