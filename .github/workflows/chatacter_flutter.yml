@@ -91,6 +91,7 @@ jobs:
           restore-keys: ${{ runner.os }}-chatacter-
       - uses: actions/setup-java@v4
         with:
+          java-version: '21'
           distribution: 'oracle'
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
