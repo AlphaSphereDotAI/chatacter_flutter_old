@@ -1,4 +1,4 @@
-name: Scan with dart-analyze
+name: Chatacter Flutter
 on:
   push:
     branches: [main]
@@ -91,7 +91,6 @@ jobs:
           restore-keys: ${{ runner.os }}-chatacter-
       - uses: actions/setup-java@v4
         with:
-          java-version: '12.x'
           distribution: 'oracle'
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
