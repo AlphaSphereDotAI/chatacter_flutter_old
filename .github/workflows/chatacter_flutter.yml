@@ -92,7 +92,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: '12.x'
-          distribution: 'jdk'
+          distribution: 'oracle'
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
