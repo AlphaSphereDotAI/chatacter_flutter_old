@@ -94,11 +94,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'oracle'
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-      - name: Setup Dotenv
+      - name: Setup .env file
         run: |
-          npx --yes dotenv-vault@latest pull
+            touch .env
+            echo GROQ_API_KEY=${{secrets.GROQ_API_KEY}} >> .env
+            echo BACKEND_KEY=${{secrets.BACKEND_KEY}} >> .env
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
