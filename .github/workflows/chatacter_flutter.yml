@@ -89,10 +89,16 @@ jobs:
           path: ~/.pub-cache
           key: ${{ runner.os }}-chatacter-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-chatacter-
-      - uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'oracle'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+      - name: Setup Dotenv
+        run: |
+          npx --yes dotenv-vault@latest pull
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
